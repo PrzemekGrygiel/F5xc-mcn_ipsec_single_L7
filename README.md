@@ -1,4 +1,19 @@
-Possible combination to run
+Before start export to env credentials
+```
+  export VES_P12_PASSWORD=<your credential password>
+  export VOLT_API_P12_FILE=<path to your local p12 file>
+  export VOLT_API_URL=<team or org tenant api url>
+```
+Change CE flavor by set variable `aws_instance_type  = "t3.xlarge`
+
+Namespace need to be created and name provided `namespace = ptf-test`
+
+AWS credentials stored in F5XC name `aws_cred_name = "aws-creds`
+
+
+
+
+**Depending on scenarion run following commands:**
 
 Local CE without WAF
 ```
