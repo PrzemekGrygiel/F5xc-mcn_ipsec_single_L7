@@ -11,4 +11,5 @@ origin-pool-remote = false
 aws_instance_type  = "t3.xlarge"
 projectPrefix      = "ptf-single-test"
 #aws_cred_name      = "galactic-aws-creds"
+#namespace          = ptf-test
 
