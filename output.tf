@@ -20,7 +20,7 @@ output "Client_HTTPS_LB_name" {
   value = "${volterra_http_loadbalancer.ptf-https-lb.name}"
 }
 output "Client_Workload_subnet_id" {
-  value = "${aws_subnet.pg-vpc1-inside-az-a-subnet.id}"
+  value = "${aws_subnet.pg-vpc1-workload-az-a-subnet.id}"
 }
 output "Client_site_name" {
   value = volterra_aws_vpc_site.aws_site1.name
@@ -39,7 +39,7 @@ output "Server_Outside_subnet_id" {
   value = "${aws_subnet.pg-vpc2-outside-az-a-subnet.id}"
 }
 output "Server_Workload_subnet_id" {
-  value = "${aws_subnet.pg-vpc2-inside-az-a-subnet.id}"
+  value = "${aws_subnet.pg-vpc2-workload-az-a-subnet.id}"
 }
 output "Server_site_name" {
   value = volterra_aws_vpc_site.aws_site2.name
