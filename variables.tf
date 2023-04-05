@@ -12,7 +12,7 @@ variable "waf" {
   default = false
 }
 variable "origin-pool-remote" {
-  type = bool
+  type    = bool
   default = false
 }
 variable "vip-ip" {
@@ -33,24 +33,24 @@ variable "key_name" {
 
 variable "aws_cred_name" {
   description = "Volterra AWS Cred name"
-  default = "przemek-aws"
+  default     = "przemek-aws"
 }
 variable "key_path" {
   default = "/Users/grygiel/Documents/keys/aws/przemek-oregon.pem"
 }
 
-variable aws_instance_type {
+variable "aws_instance_type" {
   default = "t3.xlarge"
 }
 
-variable projectPrefix {
+variable "projectPrefix" {
   default = "pg-single-test-ptf-trial"
 }
 
-variable namespace {
+variable "namespace" {
   default = "ptf-test"
 }
-variable domain {
+variable "domain" {
   default = "example.com"
 }
 
@@ -68,12 +68,12 @@ variable "vpc2_cidr_block" {
   default = "10.131.0.0/16"
 }
 
-variable pg_vpc1_az_a_workload_vm_ip {
+variable "pg_vpc1_az_a_workload_vm_ip" {
   default = "10.130.1.100"
 }
 
 
-variable pg_vpc2_az_a_workload_vm_ip {
+variable "pg_vpc2_az_a_workload_vm_ip" {
   default = "10.131.1.100"
 }
 

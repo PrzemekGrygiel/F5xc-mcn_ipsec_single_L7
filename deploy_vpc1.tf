@@ -3,41 +3,41 @@ resource "aws_vpc" "pg-vpc1" {
   tags = {
     Name = format("%s-vpc-1", var.projectPrefix)
   }
-  cidr_block           = "${var.vpc1_cidr_block}"
+  cidr_block           = var.vpc1_cidr_block
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "pg-vpc1-inside-az-a-subnet" {
-  vpc_id                  = "${aws_vpc.pg-vpc1.id}"
-  cidr_block              = "10.130.0.0/24"
-  availability_zone       = format("%sa", var.aws_region)
+  vpc_id            = aws_vpc.pg-vpc1.id
+  cidr_block        = "10.130.0.0/24"
+  availability_zone = format("%sa", var.aws_region)
 }
 
 
 resource "aws_subnet" "pg-vpc1-outside-az-a-subnet" {
-  vpc_id                  = "${aws_vpc.pg-vpc1.id}"
-  cidr_block              = "10.130.2.0/24"
-  availability_zone       = format("%sa", var.aws_region)
+  vpc_id            = aws_vpc.pg-vpc1.id
+  cidr_block        = "10.130.2.0/24"
+  availability_zone = format("%sa", var.aws_region)
 }
 
 resource "aws_subnet" "pg-vpc1-workload-az-a-subnet" {
-  vpc_id                  = "${aws_vpc.pg-vpc1.id}"
-  cidr_block              = "10.130.1.0/24"
-  availability_zone       = format("%sa", var.aws_region)
+  vpc_id            = aws_vpc.pg-vpc1.id
+  cidr_block        = "10.130.1.0/24"
+  availability_zone = format("%sa", var.aws_region)
 }
 
 
 resource "aws_subnet" "pg-vpc1-external-subnet" {
-  vpc_id                  = "${aws_vpc.pg-vpc1.id}"
-  cidr_block              = "10.130.254.0/24"
-  availability_zone       = format("%sc", var.aws_region)
+  vpc_id            = aws_vpc.pg-vpc1.id
+  cidr_block        = "10.130.254.0/24"
+  availability_zone = format("%sc", var.aws_region)
 }
 
 # Create permit all VPC security group
 resource "aws_security_group" "pg-vpc1-allow-all-sg" {
   name        = format("pg-vpc1-allow-all-%s-1-sg", var.projectPrefix)
-  vpc_id      = "${aws_vpc.pg-vpc1.id}"
+  vpc_id      = aws_vpc.pg-vpc1.id
   description = "inbound traffic"
   ingress {
     from_port   = 0

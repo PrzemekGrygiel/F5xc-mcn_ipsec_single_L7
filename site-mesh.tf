@@ -15,7 +15,7 @@ resource "volterra_site_mesh_group" "site-group" {
   tunnel_type = "SITE_TO_SITE_TUNNEL_IPSEC"
   type        = "SITE_MESH_GROUP_TYPE_FULL_MESH"
   virtual_site {
-    name = volterra_virtual_site.virtual_site.name
+    name      = volterra_virtual_site.virtual_site.name
     namespace = "shared"
   }
 }

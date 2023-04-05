@@ -3,40 +3,40 @@ resource "aws_vpc" "pg-vpc2" {
   tags = {
     Name = format("%s-vpc-2", var.projectPrefix)
   }
-  cidr_block           = "${var.vpc2_cidr_block}"
+  cidr_block           = var.vpc2_cidr_block
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "pg-vpc2-inside-az-a-subnet" {
-  vpc_id                  = "${aws_vpc.pg-vpc2.id}"
-  cidr_block              = "10.131.0.0/24"
-  availability_zone       = format("%sa", var.aws_region)
+  vpc_id            = aws_vpc.pg-vpc2.id
+  cidr_block        = "10.131.0.0/24"
+  availability_zone = format("%sa", var.aws_region)
 }
 
 
 resource "aws_subnet" "pg-vpc2-outside-az-a-subnet" {
-  vpc_id                  = "${aws_vpc.pg-vpc2.id}"
-  cidr_block              = "10.131.2.0/24"
-  availability_zone       = format("%sa", var.aws_region)
+  vpc_id            = aws_vpc.pg-vpc2.id
+  cidr_block        = "10.131.2.0/24"
+  availability_zone = format("%sa", var.aws_region)
 }
 
 
 resource "aws_subnet" "pg-vpc2-workload-az-a-subnet" {
-  vpc_id                  = "${aws_vpc.pg-vpc2.id}"
-  cidr_block              = "10.131.1.0/24"
-  availability_zone       = format("%sa", var.aws_region)
+  vpc_id            = aws_vpc.pg-vpc2.id
+  cidr_block        = "10.131.1.0/24"
+  availability_zone = format("%sa", var.aws_region)
 }
 
 resource "aws_subnet" "pg-vpc2-external-subnet" {
-  vpc_id                  = "${aws_vpc.pg-vpc2.id}"
-  cidr_block              = "10.131.254.0/24"
-  availability_zone       = format("%sc", var.aws_region)
+  vpc_id            = aws_vpc.pg-vpc2.id
+  cidr_block        = "10.131.254.0/24"
+  availability_zone = format("%sc", var.aws_region)
 }
 
 resource "aws_security_group" "pg-vpc2-external-sg" {
   name        = format("pg-vpc2-external-%s-sg", var.projectPrefix)
-  vpc_id      = "${aws_vpc.pg-vpc2.id}"
+  vpc_id      = aws_vpc.pg-vpc2.id
   description = "inbound traffic"
   ingress {
     from_port   = 22
@@ -44,7 +44,7 @@ resource "aws_security_group" "pg-vpc2-external-sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-    ingress {
+  ingress {
     from_port   = "-1"
     to_port     = "-1"
     protocol    = "icmp"
@@ -61,7 +61,7 @@ resource "aws_security_group" "pg-vpc2-external-sg" {
 # Create permit all VPC security group
 resource "aws_security_group" "pg-vpc2-allow-all-sg" {
   name        = format("pg-pg-vpc2-allow-all-%s-1-sg", var.projectPrefix)
-  vpc_id      = "${aws_vpc.pg-vpc2.id}"
+  vpc_id      = aws_vpc.pg-vpc2.id
   description = "inbound traffic"
   ingress {
     from_port   = 0
